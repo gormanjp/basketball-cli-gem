@@ -33,7 +33,14 @@ class Basketball::Team
 		doc = Nokogiri::HTML(open("#{self.url}"))
 		@tweet = doc.search('article.news-feed-tweet').first.search('p').text
 		@schedule = []
-		@schedule << doc.search('')
+		info = doc.search('section.club-schedule li a.upcoming').first
+		@schedule << info.search('div.game-info').text
+		@schedule << info.search('div.game-meta div.game-date span').text
+		#EST time conversion
+		time = info.search('div.time').text
+		hour = time[0].to_i + 3
+		time[0] = hour.to_s
+		@schedule << time
 	end
 
 end

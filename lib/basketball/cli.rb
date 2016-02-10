@@ -19,13 +19,11 @@ class Basketball::CLI
 	end
 
 	def list_menu
-		puts "Which team would you like to know more about? (Enter: 1-25, list, or exit)"
+		puts "Which team would you like to know more about? (Enter: 1-25 or exit)"
 		input = gets.strip.downcase
 			
 		if input.to_i > 0
 			team_menu(input)
-		elsif input == "list"
-			list_teams
 		elsif input == "exit"
 			goodbye	
 		else
@@ -40,6 +38,7 @@ class Basketball::CLI
 		puts ""
 		puts "-------------#{selected_team.name} - Record: #{selected_team.record}-------------"
 		puts ""
+		puts ""
 		puts "Would you like more info?"
 		puts "Enter 'news' for the latest headline or tweet, 'schedule' to see when the team's next game is, 'list' to go back to the top 25 list, or 'exit'"
 		input2 = gets.strip.downcase
@@ -51,6 +50,13 @@ class Basketball::CLI
 			puts "#{selected_team.tweet}"
 			puts ""
 			puts ""
+			team_menu(input)
+		elsif input2 == "schedule"
+			puts ""
+			puts "#{selected_team.name} #{selected_team.schedule[0]}"
+			puts "#{selected_team.schedule[1]} at #{selected_team.schedule[2]} EST"
+			puts ""
+			team_menu(input)
 		elsif input2 == 'exit'
 			goodbye
 		end
