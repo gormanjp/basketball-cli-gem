@@ -38,9 +38,16 @@ class Basketball::Team
 		@schedule << info.search('div.game-meta div.game-date span').text
 		#EST time conversion
 		time = info.search('div.time').text
-		hour = time[0].to_i + 3
-		time[0] = hour.to_s
-		@schedule << time
+		if time.length == 7
+			hour = time[0].to_i + 3
+			time[0] = hour.to_s
+			@schedule << time.gsub("AM","PM")
+		elsif time.length == 8
+			hour = time[0..1].to_i - 9 
+			time[0..1] = hour.to_s
+			@schedule << time.gsub("AM","PM")
+		end
+				
 	end
 
 end

@@ -40,7 +40,7 @@ class Basketball::CLI
 		puts ""
 		puts ""
 		puts "Would you like more info?"
-		puts "Enter 'news' for the latest headline or tweet, 'schedule' to see when the team's next game is, 'list' to go back to the top 25 list, or 'exit'"
+		puts "Enter 'news' for the latest tweet from the team, 'schedule' to see when the team's next game is, 'back' to go back to the top 25 list, or 'exit'"
 		input2 = gets.strip.downcase
 		if input2 == "list" || input2 == "back"
 			list_teams
